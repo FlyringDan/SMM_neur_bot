@@ -1,7 +1,7 @@
-from openai import OpenAI
+from openai import AsyncOpenAI
 import base64
 
-client = OpenAI(
+client = AsyncOpenAI(
     base_url='http://127.0.0.1:11434/v1',
     api_key='ollama' # Ключ обязателен для инициализации библиотеки, но его значение не проверяется
 )
@@ -22,7 +22,7 @@ async def llm_send(images: list):
 
     # Отпраляем запрос в llm
     response = await client.chat.completions.create(
-        model="llava", 
+        model="qwen2.5vl:latest", 
         messages=[{"role": "user", "content": content}]
     )
 
